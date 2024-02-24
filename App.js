@@ -4,7 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import matches from './src/screens/matches';
 import Navigation from './src/components/Navigation';
-import matches from './src/screens/GalileoDesign';
+import Matches from './src/screens/AllMatches';
+import MatchDeta from './src/components/ListOfMatches';
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -12,8 +15,8 @@ export default function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator>
-      {/* <Stack.Screen name="nav" component={Navigation} /> */}
-      <Stack.Screen name="Home" options={ {headerShown:false} } component={matches} />
+      <Stack.Screen name="Home" options={ {headerShown:false} } component={Matches}  />
+      <Stack.Screen name="matchdetails" options={ {headerShown:false} } component={MatchDeta} />
     </Stack.Navigator>
     <Navigation />
   </NavigationContainer>

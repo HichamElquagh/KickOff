@@ -1,47 +1,48 @@
-import * as React from "react";
+import {useEffect,useState} from "react";
 import { Text, StyleSheet, View , Image } from "react-native";
 // import { Image } from "expo-image";
 import Navigation from "../components/Navigation";
 import MatchFilterContainer from "../components/MatchFilterContainer";
-import ScheduleContainer from "../components/ScheduleContainer";
+import ListOfMatches from "../components/ListOfMatches";
 import { Padding, Color, Border, FontSize, FontFamily } from "../../GlobalStyles";
+import axios from "axios";
 
-const GalileoDesign = () => {
+const AllMatches = ({navigation}) => {
+  const [matches, setMatches] = useState([]);
+  const [activeNav, setActiveNav] = useState(null);
 
+  useEffect(() => {
+    
+    const fetchMatches = async () => {
+      try {
+        const uri = `https://api.sportmonks.com/v3/football/fixtures?include=participants&league_id=${activeNav}`;
+        const response = await axios.get(uri, {
+          headers: {
+            'Authorization': 'hRUrsgLPx1hOtaduIEtebzydO5DGGnEpBgwmM4twAKBWMZHpYmcPWDW9ZGrX'
+          }
+        });
+        setMatches(response.data.data); // Assuming the match data is in response.data.data
+        activeNav(response.data.data[0].id); // Assuming the match data is in response.data.data
+      } catch (error) {
+        console.error("Error fetching matches:", error);
+      }
+    };
+    if(activeNav){
+      console.log(activeNav);
+      fetchMatches();
+    }
+
+    
+  }, [activeNav]);
+  
+  const handleNavigation = (item) => {
+    setActiveNav(item);
+  }
   return (
     // <View style={styles.galileoDesign}>
       <View style={styles.depth0Frame0}>
-        <MatchFilterContainer />
-        <View style={styles.depth1Frame1}>
-          <View style={[styles.depth2Frame0, styles.depth2FrameFlexBox]}>
-            <View style={styles.depth3Frame0}>
-              <View style={styles.depth4Frame0}>
-                <Text style={styles.allMatches}>All Matches</Text>
-              </View>
-            </View>
-            {/* this is image for filter png  */}
-            <Image
-              style={styles.depth3Frame1}
-              contentFit="cover"
-              source={require("../assets/depth-3-frame-1.png")}
-            />
-          </View>
-          <View style={[styles.depth2Frame1, styles.depth2FrameFlexBox]}>
-            <View style={styles.depth3Frame01}>
-              <View style={styles.depth4Frame0}>
-                <Text style={styles.allMatches}>League Matches</Text>
-              </View>
-            </View>
-                        {/* this is image for filter png  */}
-
-            <Image
-              style={styles.depth3Frame1}
-              contentFit="cover"
-              source={require("../assets/depth-3-frame-11.png")}
-              />
-          </View>
-        </View>
-         <ScheduleContainer/>
+        <MatchFilterContainer navigation={activeNav} handleNavigation={handleNavigation} />
+       {matches && matches.length > 0 && <ListOfMatches matches={matches} navigation={navigation} />}
         
       </View>
     // {/* </View> */}
@@ -49,16 +50,7 @@ const GalileoDesign = () => {
 };
 
 const styles = StyleSheet.create({
-  depth2FrameFlexBox: {
-    paddingRight: 8,
-    paddingLeft: 16,
-    backgroundColor: "#ededed",
-    borderRadius: Border.br_9xs,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 32,
-    flexDirection: "row",
-  },
+
   depth4FrameSpaceBlock: {
     marginTop: 4,
     height: 18,
@@ -77,14 +69,7 @@ const styles = StyleSheet.create({
     height: 54,
     alignItems: "center",
   },
-  allMatches: {
-    fontSize: 14,
-    lineHeight: 21,
-    textAlign: "left",
-    color: "#000",
-    fontFamily: "Inter-Medium",
-    fontWeight: "500",
-  },
+
   depth4Frame0: {
     alignSelf: "stretch",
   },
@@ -108,13 +93,7 @@ const styles = StyleSheet.create({
     width: 163,
     marginLeft: 12,
   },
-  depth1Frame1: {
-    height: 56,
-    padding: 12,
-    flexDirection: "row",
-    overflow: "hidden",
-    width: 390,
-  },
+
   depth1Frame5: {
     height: 325,
     width: 390,
@@ -201,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GalileoDesign;
+export default AllMatches;

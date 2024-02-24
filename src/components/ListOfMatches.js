@@ -5,31 +5,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 
-const ScheduleContainer = () => {
-
-  const [matches, setMatches] = useState([]);
-
-  useEffect(() => {
-    const fetchMatches = async () => {
-      try {
-        const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=participants', {
-          headers: {
-            'Authorization': 'hRUrsgLPx1hOtaduIEtebzydO5DGGnEpBgwmM4twAKBWMZHpYmcPWDW9ZGrX'
-          }
-        });
-        setMatches(response.data.data); // Assuming the match data is in response.data.data
-      } catch (error) {
-        console.error("Error fetching matches:", error);
-      }
-    };
-
-    fetchMatches();
-  }, []);
+const ListOfMatches = ({navigation,matches}) => {
 
 
   return (
     <ScrollView style={styles.depth1Frame2}>
-   {matches.map((match) => (
+   {matches.length != 0 && matches.map((match) => (
   <View key={match.id} style={styles.depth2Frame0}>
     {/* {match.participants.map((participant) => ( */}
       <Image
@@ -77,14 +58,15 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontFamily: FontFamily.interMedium,
     color: Color.colorBlack,
-    textAlign: "left",
+    textAlign: "center",
+    marginRight: 10,
   },
   depth5Frame0: {
     alignSelf: "stretch",
   },
   depth4Frame0: {
     height: 24,
-    width: 199,
+    // width: 199,
     overflow: "hidden",
   },
   manchesterUnitedVs: {
@@ -92,7 +74,8 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: FontFamily.interRegular,
     color: Color.colorDimgray,
-    textAlign: "left",
+    textAlign: "center",
+    marginRight: 10,
   },
   depth4Frame1: {
     height: 21,
@@ -103,14 +86,14 @@ const styles = StyleSheet.create({
     height: 45,
     justifyContent: "center",
     marginLeft: 16,
-    // marginRight: 16,
+    marginRight: 10,
     width: 199,
 
     // border : "1px solid #ededed",
   },
   depth2Frame0: {
     // position: "absolute",
-    top: 12,
+    // top: 12,
     // left: 10,
     // width: 400,
     flexDirection: "row",
@@ -129,11 +112,11 @@ const styles = StyleSheet.create({
     marginBottom: 15, // 
   },
   depth1Frame2: {
-    // backgroundColor: "#fff",
+    backgroundColor: "#0C2D57",
     // width: 390,
     height: 100,
     padding :20,
   },
 });
 
-export default ScheduleContainer;
+export default ListOfMatches;
