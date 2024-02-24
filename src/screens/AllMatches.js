@@ -22,7 +22,7 @@ const AllMatches = ({navigation}) => {
             'Authorization': 'hRUrsgLPx1hOtaduIEtebzydO5DGGnEpBgwmM4twAKBWMZHpYmcPWDW9ZGrX'
           }
         });
-        // console.log(response.data.data);
+        console.log(response.data.data);
         setMatches(response.data.data); 
         // setActiveNav(response.data.data[0].league_id); 
         console.log(response.data.data[0].id , 'response.data.data[0].id');
@@ -48,6 +48,7 @@ console.log(item);
         <MatchFilterContainer navigationId={activeNav} handleNavigation={handleNavigation} />
        {matches && matches.length > 0 && <ListOfMatches matches={matches} navigation={navigation} />}
         
+       <Navigation navigation={navigation} />
       </View>
     // {/* </View> */}
   );
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   depth0Frame0: {
-    height: 844,
+    height: "100%",
     overflow: "hidden",
     backgroundColor: "#fff",
 

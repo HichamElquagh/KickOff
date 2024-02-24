@@ -55,7 +55,6 @@ const MatchFilterContainer = ({navigationId,handleNavigation}) => {
           <ScrollView horizontal style={styles.depth1Frame1}>
            {data.length != 0 &&  data.map((item) => (
              <TouchableOpacity onPress={()=>{handleNavigation(item.id)}}>
-                  <Text> {item.id}E {navigationId}</Text>
                   <View style={[styles.depth3Frame01,{backgroundColor : navigationId==item.id ? "green": "white"}]}>
                       <Text numberOfLines={1} style={styles.allMatches}   >{item.name}</Text>
                   </View>

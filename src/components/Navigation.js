@@ -1,12 +1,15 @@
 import * as React from "react";
-// import { Image } from "expo-image";
-import { StyleSheet, View, Text , Image } from "react-native";
 
-const Navigation = () => {
+// import { Image } from "expo-image";
+import { StyleSheet, View, Text , Image , TouchableOpacity } from "react-native";
+
+const Navigation = ({navigation}) => {
   return (
     <View style={styles.depth1Frame6}>
       <View style={styles.depth2Frame0}>
-        <View style={[styles.depth3Frame0, styles.depth3FrameLayout]}>
+        <TouchableOpacity
+         style={[styles.depth3Frame0, styles.depth3FrameLayout]}
+         >
           <View style={[styles.depth4Frame0, styles.depth4FrameFlexBox]}>
             <Image
               style={styles.depth5Frame0}
@@ -19,8 +22,11 @@ const Navigation = () => {
               <Text style={[styles.home, styles.homeTypo]}>Home</Text>
             </View>
           </View>
-        </View>
-        <View style={[styles.depth3Frame1, styles.depth3FrameLayout]}>
+        </TouchableOpacity>
+        <TouchableOpacity
+                 onPress={()=>{navigation.navigate('Home')}}
+
+         style={[styles.depth3Frame1, styles.depth3FrameLayout]}>
           <View style={[styles.depth4Frame01, styles.depth4FrameFlexBox]}>
             <Image
               style={styles.depth5Frame0}
@@ -33,7 +39,7 @@ const Navigation = () => {
               <Text style={[styles.matches, styles.homeTypo]}>Matches</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={[styles.depth3Frame1, styles.depth3FrameLayout]}>
           <View style={[styles.depth4Frame0, styles.depth4FrameFlexBox]}>
             <Image

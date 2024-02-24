@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image , ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image , ScrollView, TouchableOpacity } from "react-native";
 import { Border, FontSize, FontFamily, Color } from "../../GlobalStyles";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -11,7 +11,9 @@ const ListOfMatches = ({navigation,matches}) => {
   return (
     <ScrollView style={styles.depth1Frame2}>
    {matches.length != 0 && matches.map((match) => (
-  <View key={match.id} style={styles.depth2Frame0}>
+  <TouchableOpacity
+   onPress={()=>{navigation.navigate('matchdetails',{matchId:match.id})}}
+  key={match.id} style={styles.depth2Frame0}>
     {/* {match.participants.map((participant) => ( */}
       <Image
         // key={participant.id}
@@ -37,7 +39,7 @@ const ListOfMatches = ({navigation,matches}) => {
         style={styles.depth3Frame0}
         contentFit="cover"
         source={{ uri: match.participants[1].image_path }} /> 
-  </View>
+  </TouchableOpacity>
 ))}
 
   </ScrollView>
