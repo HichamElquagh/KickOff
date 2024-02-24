@@ -4,25 +4,25 @@ import { StyleSheet, View, Text ,  Image ,ScrollView, TouchableOpacity, FlatList
 // import { Image } from "expo-i
 
 
-const MatchFilterContainer = ({navigation,handleNavigation}) => {
+const MatchFilterContainer = ({navigationId,handleNavigation}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
 
    const GetLeagueName = async ()=>{
-    const uri = `https://api.sportmonks.com/v3/football/league`
+    const uri = `https://api.sportmonks.com/v3/football/leagues`
     try {
        const response = await axios.get(uri,
         {
           headers: {
             Authorization:
-              "hRUrsgLPx1hOtaduIEtebzydO5DGGnEpBgwmM4twAKBWMZHpYmcPWDW9ZGrX",
+            "hRUrsgLPx1hOtaduIEtebzydO5DGGnEpBgwmM4twAKBWMZHpYmcPWDW9ZGrX",
           },
         }
         
         )
         setData(response.data.data);
         handleNavigation(response.data.data[0].id);
-
+    
     } catch (error) {
       console.log(error.message);
       
@@ -39,7 +39,9 @@ const MatchFilterContainer = ({navigation,handleNavigation}) => {
       //   setData(response.data.data);
       //   handleNavigation(response.data.data[0].id);
       // });
+
     }
+    GetLeagueName();
   }, []);
   return (
     <>
@@ -52,8 +54,9 @@ const MatchFilterContainer = ({navigation,handleNavigation}) => {
     <View style={styles.FilterContainer}>
           <ScrollView horizontal style={styles.depth1Frame1}>
            {data.length != 0 &&  data.map((item) => (
-                <TouchableOpacity onPress={()=>{handleNavigation(item.id)}}>
-                  <View style={[styles.depth3Frame01,{backgroundColor :navigation==item.id ? "green": "white"}]}>
+             <TouchableOpacity onPress={()=>{handleNavigation(item.id)}}>
+                  <Text> {item.id}E {navigationId}</Text>
+                  <View style={[styles.depth3Frame01,{backgroundColor : navigationId==item.id ? "green": "white"}]}>
                       <Text numberOfLines={1} style={styles.allMatches}   >{item.name}</Text>
                   </View>
                 </TouchableOpacity>

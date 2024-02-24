@@ -14,6 +14,7 @@ const AllMatches = ({navigation}) => {
   useEffect(() => {
     
     const fetchMatches = async () => {
+
       try {
         const uri = `https://api.sportmonks.com/v3/football/fixtures?include=participants&league_id=${activeNav}`;
         const response = await axios.get(uri, {
@@ -21,10 +22,12 @@ const AllMatches = ({navigation}) => {
             'Authorization': 'hRUrsgLPx1hOtaduIEtebzydO5DGGnEpBgwmM4twAKBWMZHpYmcPWDW9ZGrX'
           }
         });
-        setMatches(response.data.data); // Assuming the match data is in response.data.data
-        activeNav(response.data.data[0].id); // Assuming the match data is in response.data.data
+        // console.log(response.data.data);
+        setMatches(response.data.data); 
+        // setActiveNav(response.data.data[0].league_id); 
+        console.log(response.data.data[0].id , 'response.data.data[0].id');
       } catch (error) {
-        console.error("Error fetching matches:", error);
+        console.log("Error fetching matches:", error.message);
       }
     };
     if(activeNav){
@@ -34,14 +37,15 @@ const AllMatches = ({navigation}) => {
 
     
   }, [activeNav]);
-  
+
   const handleNavigation = (item) => {
     setActiveNav(item);
-  }
+console.log(item); 
+ }
   return (
     // <View style={styles.galileoDesign}>
       <View style={styles.depth0Frame0}>
-        <MatchFilterContainer navigation={activeNav} handleNavigation={handleNavigation} />
+        <MatchFilterContainer navigationId={activeNav} handleNavigation={handleNavigation} />
        {matches && matches.length > 0 && <ListOfMatches matches={matches} navigation={navigation} />}
         
       </View>
