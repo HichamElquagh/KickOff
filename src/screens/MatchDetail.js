@@ -89,6 +89,7 @@ if(match.length === 0){
         </View>
         <View style={[styles.depth1Frame2, styles.depth1FrameSpaceBlock]}>
           <View style={styles.depth5Frame0}>
+            {/* <Image style={styles.depth3Frame0} contentFit="cover" source={{uri : match?.participants[1].image_path}} /> */}
             <Text style={[styles.liverpoolVsMan, styles.matchDetailsTypo]}>
               {match?.participants[0].name || ""}  vs {match?.participants[1].name || ""}
             </Text>

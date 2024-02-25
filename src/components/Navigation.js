@@ -39,8 +39,10 @@ const Navigation = ({navigation}) => {
               <Text style={[styles.matches, styles.homeTypo]}>Matches</Text>
             </View>
           </View>
-        </TouchableOpacity>
-        <View style={[styles.depth3Frame1, styles.depth3FrameLayout]}>
+        </TouchableOpacity  >
+        <TouchableOpacity
+                  onPress={()=>{navigation.navigate('allplayers')}} 
+        style={[styles.depth3Frame1, styles.depth3FrameLayout]}>
           <View style={[styles.depth4Frame0, styles.depth4FrameFlexBox]}>
             <Image
               style={styles.depth5Frame0}
@@ -50,10 +52,10 @@ const Navigation = ({navigation}) => {
           </View>
           <View style={[styles.depth4Frame12, styles.depth4FrameSpaceBlock]}>
             <View style={styles.depth5Frame01}>
-              <Text style={[styles.home, styles.homeTypo]}>Tables</Text>
+              <Text style={[styles.home, styles.homeTypo]}>Players</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={[styles.depth3Frame1, styles.depth3FrameLayout]}>
           <View style={[styles.depth4Frame0, styles.depth4FrameFlexBox]}>
             <Image
