@@ -1,14 +1,17 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image , ActivityIndicator , Button , TouchableOpacity } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
+import {DataContext} from '../../context/DataProvider';
 
 const MatchDetail = ({ navigation, route }) => {
   const { matchId } = route.params;
   const [match, setMatch] = useState([]);
-
+  const {addToFavorite} = React.useContext(DataContext);
+  
   useEffect(() => {
     const fetchMatch = async () => {
       try {
@@ -28,14 +31,23 @@ const MatchDetail = ({ navigation, route }) => {
   }, []);
 
   if (match.length === 0) {
-    return <Text style={styles.loadingContainer} >Loading...</Text>;
+    return <ActivityIndicator size="large" color="#0000ff" />
+     
+  }
+  const handleFavorite = async (match) => {
+    addToFavorite(match); // Call the addToFavorite function from DataContext
+
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Match Details</Text>
+        <TouchableOpacity style={{}} onPress={() => navigation.goBack()}>
+        <FontAwesome name="arrow-left" size={20} color="black" />
+        </TouchableOpacity>
       </View>
+       
       <View style={styles.imageContainer}>
         <Image
           style={styles.matchImage}
@@ -68,6 +80,19 @@ const MatchDetail = ({ navigation, route }) => {
         <Text style={styles.vsText}>VS</Text>
         <Image style={styles.teamLogo} resizeMode="cover" source={{ uri: match.participants[1].image_path }} />
       </View>
+      <Button
+      title="Add to Favorites"
+     style={{
+        backgroundColor: '#FF0000',
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        color: '#FFFFFF',
+        fontSize: 16,
+        width : "10%",
+      }}
+      onPress={() => handleFavorite(match)}
+    />
       <Navigation navigation={navigation} />
     </View>
   );
@@ -126,7 +151,7 @@ const styles = StyleSheet.create({
   teamNames: {
     fontSize: 22,
     textAlign: "center",
-        fontFamily: "Lexend-Bold",
+    fontFamily: 'System', 
         fontWeight: "700",
         letterSpacing: 0,
         color:  "#0d171c",

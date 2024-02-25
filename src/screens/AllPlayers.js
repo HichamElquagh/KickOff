@@ -9,6 +9,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 import Navigation from "../components/Navigation";
@@ -43,9 +44,9 @@ const AllPlayers = ({ navigation }) => {
     fetchPlayers();
   }, []);
 
-  if (loading) {
-    return <Text style={styles.loading}>Loading...</Text>;
-  }
+//   if (loading) {
+//     return <ActivityIndicator size="large" color="#0000ff" />;
+//   }
 
   const handleSearch = async () => {
     try {
@@ -88,6 +89,7 @@ const AllPlayers = ({ navigation }) => {
           onChangeText={handleSearchQueryChange}
         />
       </View>
+      {loading && <ActivityIndicator size="large" color="#0000ff" />}
       <ScrollView>
         { players && players.length !== 0 ?
           players.map((player) => (

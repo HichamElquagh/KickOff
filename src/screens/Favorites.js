@@ -2,15 +2,33 @@ import React from "react";
 import { StyleSheet, Text, View, Image , ScrollView, TouchableOpacity } from "react-native";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { DataContext } from "../../context/DataProvider";
+import { FontAwesome } from '@expo/vector-icons';
+import Navigation from "../components/Navigation";
 
-const ListOfMatches = ({navigation, matches}) => {
+const Favorites = ({navigation}) => {
+    const {favorites , removeItem} = React.useContext(DataContext);
   return (
-    
+    <>
+    <View style={styles.favoriteHeader}>
+    <TouchableOpacity style={{marginTop : 34}} onPress={() => navigation.goBack()}>
+        <FontAwesome name="arrow-left" size={20} color="black" />
+        </TouchableOpacity>
+    <View style={styles.titleContainer}>
+      <Text style={styles.title}>Favorite</Text>
+    </View>
+  </View>
     <ScrollView style={styles.container}>
-      {matches.length !== 0 && matches.map((match) => (
+      {favorites.length !== 0 && favorites.map((match) => (
+
         <TouchableOpacity
           onPress={() => {navigation.navigate('matchdetails',{matchId: match.id})}}
           key={match.id} style={styles.matchContainer}>
+            
+            <TouchableOpacity style={{position : "absolute", top:3 , right: 3  }} onPress={() => removeItem(match)}>
+            <FontAwesome name="trash" size={24} color="red" />
+
+                    </TouchableOpacity>
           <Image
             style={styles.avatar}
             contentFit="cover"
@@ -23,13 +41,20 @@ const ListOfMatches = ({navigation, matches}) => {
               <Text style={styles.matchNameText}>{match.name}</Text>
             </View>
           </View>
+          
           <Image
             style={styles.avatar}
             contentFit="cover"
             source={{ uri: match.participants[1].image_path }} /> 
         </TouchableOpacity>
+
+
+
       ))}
     </ScrollView>
+    <Navigation navigation={navigation} />
+            </>
+
   );
 };
 
@@ -38,11 +63,31 @@ const styles = StyleSheet.create({
     backgroundColor: "#0C2D57",
     padding: 20,
   },
+  favoriteHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    height: 80,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  title: {
+    fontSize: 16,
+    letterSpacing: 0,
+    lineHeight: 23,
+    height: 30,
+    fontWeight: "700",
+    color: "#000",
+    textAlign: "center",
+    width: "100%"
+  },
   matchContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 90,
+    height: 100,
     backgroundColor: "#ECEEF2",
     borderRadius: 20,
     padding: 16,
@@ -85,6 +130,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginRight: 10,
   },
+  titleContainer: {
+    marginTop: 44,
+    width: "100%",
+    justifyContent: "center",
+    height: 23,
+    textAlign : "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
 });
 
-export default ListOfMatches;
+export default Favorites;

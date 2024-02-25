@@ -85,6 +85,8 @@ const styles = StyleSheet.create({
     height: 30,
     fontWeight: "700",
     color: "#000",
+    textAlign: "center",
+    width: "100%"
   },
   filterItem: {
     width: 124,
@@ -113,6 +115,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     height: 23,
+    textAlign : "center",
     alignItems: "center",
     flexDirection: "row",
   },

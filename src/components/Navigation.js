@@ -45,6 +45,7 @@ const Navigation = ({navigation}) => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={()=>{navigation.navigate('Favorites')}}
          style={styles.menuItem}>
           <View style={styles.iconContainer}>
             <Image

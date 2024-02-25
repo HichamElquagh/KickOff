@@ -8,7 +8,9 @@ import {
   Image,
   ScrollView,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 import Navigation from "../components/Navigation";
 
@@ -52,6 +54,9 @@ const PlayerDetail = ({ navigation , route }) => {
     <View style={styles.container}>
       <View style={styles.container12}>
         <View style={styles.container1}>
+          <TouchableOpacity style={{ paddingStart : 30}} onPress={() => navigation.goBack()}>
+        <FontAwesome name="arrow-left" size={20} color="black" />
+        </TouchableOpacity>
           <Text style={styles.matches}> Player Details</Text>
         </View>
       </View>     
