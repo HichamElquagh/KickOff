@@ -53,13 +53,6 @@ if(match.length === 0){
       <View style={styles.depth0Frame0}>
         <View style={[styles.depth1Frame0, styles.depth1FrameLayout]}>
           <View style={[styles.depth2Frame0, styles.depth2FrameFlexBox]}>
-            <View style={styles.depth3Frame0}>
-              {/* <Image
-                style={styles.depth4Frame0}
-                contentFit="cover"
-                source={{uri : match.participants[0].venue.image_path}}
-              /> */}
-            </View>
             <View style={styles.depth3Frame1}>
               <View style={styles.depth4Frame01}>
                 <View style={styles.depth5Frame0}>
@@ -68,9 +61,6 @@ if(match.length === 0){
                   </Text>
                 </View>
               </View>
-            </View>
-            <View style={styles.depth3Frame2}>
-              <View style={styles.depth4Frame02} />
             </View>
           </View>
         </View>
@@ -186,105 +176,14 @@ if(match.length === 0){
           /> */}
         </View>
         <View style={styles.depth1Frame7}>
-          <View style={[styles.depth2Frame07, styles.frameBg]}>
-            {/* <Image
-              style={styles.depth3Frame07}
-              contentFit="cover"
-              source={require("../assets/depth-3-frame-0.png")}
-            /> */}
-            <View style={[styles.depth3Frame11, styles.frameBg]}>
-              <View style={styles.depth5Frame0}>
-                <Text style={styles.addToCalendar}>Add to Calendar</Text>
-              </View>
-            </View>
-          </View>
+          <Image style={styles.Logo} contentFit="cover" source={{uri : match.participants[0].image_path}}/>
+          <Text style={{ height:"100%" , display: "flex", fontSize: 20 , flexDirection : "row" , justifyContent: "center" , }}>
+            VS 
+          </Text>
+          <Image style={styles.Logo} contentFit="cover" source={{uri : match.participants[1].image_path}}/>
+
         </View>
-        {/* <View style={styles.depth1Frame8} />
-        <View style={[styles.depth1Frame9, styles.depth1FrameSpaceBlock]}>
-          <View style={styles.depth2Frame08}>
-            <View style={styles.depth3FrameLayout}>
-              <View style={[styles.depth4Frame09, styles.depth4FrameFlexBox]}>
-                <Image
-                  style={styles.depth4Frame0}
-                  contentFit="cover"
-                  source={require("../assets/depth-5-frame-0.png")}
-                />
-              </View>
-              <View
-                style={[styles.depth4Frame14, styles.depth4FrameSpaceBlock]}
-              >
-                <View style={styles.depth5Frame010}>
-                  <Text style={[styles.home, styles.homeTypo]}>Home</Text>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.depth3Frame12, styles.depth3FrameLayout]}>
-              <View style={[styles.depth4Frame010, styles.depth4FrameFlexBox]}>
-                <Image
-                  style={styles.depth4Frame0}
-                  contentFit="cover"
-                  source={require("../assets/depth-5-frame-01.png")}
-                />
-              </View>
-              <View
-                style={[styles.depth4Frame15, styles.depth4FrameSpaceBlock]}
-              >
-                <View style={styles.depth5Frame010}>
-                  <Text style={[styles.live, styles.homeTypo]}>Live</Text>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.depth3Frame12, styles.depth3FrameLayout]}>
-              <View style={[styles.depth4Frame09, styles.depth4FrameFlexBox]}>
-                <Image
-                  style={styles.depth4Frame0}
-                  contentFit="cover"
-                  source={require("../assets/depth-5-frame-02.png")}
-                />
-              </View>
-              <View
-                style={[styles.depth4Frame16, styles.depth4FrameSpaceBlock]}
-              >
-                <View style={styles.depth5Frame010}>
-                  <Text style={[styles.home, styles.homeTypo]}>Leagues</Text>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.depth3Frame12, styles.depth3FrameLayout]}>
-              <View style={[styles.depth4Frame09, styles.depth4FrameFlexBox]}>
-                <Image
-                  style={styles.depth4Frame0}
-                  contentFit="cover"
-                  source={require("../assets/depth-5-frame-03.png")}
-                />
-              </View>
-              <View
-                style={[styles.depth4Frame17, styles.depth4FrameSpaceBlock]}
-              >
-                <View style={styles.depth5Frame010}>
-                  <Text style={[styles.home, styles.homeTypo]}>My Bets</Text>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.depth3Frame12, styles.depth3FrameLayout]}>
-              <View style={[styles.depth4Frame09, styles.depth4FrameFlexBox]}>
-                <Image
-                  style={styles.depth4Frame0}
-                  contentFit="cover"
-                  source={require("../assets/depth-5-frame-04.png")}
-                />
-              </View>
-              <View
-                style={[styles.depth4Frame18, styles.depth4FrameSpaceBlock]}
-              >
-                <View style={styles.depth5Frame010}>
-                  <Text style={[styles.home, styles.homeTypo]}>Account</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View> */}
-        {/* <View style={styles.depth1Frame10} /> */}
+
       </View>
       <Navigation  navigation={navigation} />
 
@@ -303,6 +202,14 @@ const styles = StyleSheet.create({
     width: 358,
     alignItems: "center",
     flexDirection: "row",
+  },
+  Logo: {
+    height: 90,
+    width: 90,
+    borderRadius: 20,
+    // padding: 16,
+
+    // marginBottom: 15, // 
   },
   matchDetailsTypo: {
     textAlign: "left",
@@ -571,70 +478,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   depth1Frame7: {
-    height: 64,
-    paddingVertical: 12,
+    height: 120,
+    padding: 30,
+    display: "flex",
     flexDirection: "row",
-    paddingHorizontal: 16,
-    width: 390,
+    justifyContent: "space-around",
+    width: "100%",
+
   },
-  // depth1Frame8: {
-  //   height: 48,
-  //   width: 390,
-  // },
-  // depth4Frame09: {
-  //   paddingHorizontal: 0,
-  //   paddingVertical: Padding.p_9xs,
-  //   width: 24,
-  // },
-  // home: {
-  //   color:  "#4d7a99",
-  // },
-  // depth5Frame010: {
-  //   alignSelf: "stretch",
-  //   alignItems: "center",
-  // },
-  // depth4Frame14: {
-  //   width: 36,
-  // },
-  // depth4Frame010: {
-  //   borderRadius: 16,
-  //   justifyContent: "center",
-  //   width: 48,
-  // },
-  // live: {
-  //   color:  "#0d171c",
-  //   textAlign: "center",
-  //   lineHeight: 18,
-  //   fontSize: 12,
-  // },
-  // depth4Frame15: {
-  //   width: 25,
-  // },
-  // depth3Frame12: {
-  //   marginLeft: 8,
-  // },
-  // depth4Frame16: {
-  //   width: 51,
-  // },
-  // depth4Frame17: {
-  //   width: 48,
-  // },
-  // depth4Frame18: {
-  //   width: 49,
-  // },
-  // depth2Frame08: {
-  //   height: 54,
-  //   flexDirection: "row",
-  //   width: 358,
-  // },
-  // depth1Frame9: {
-  //   borderStyle: "solid",
-  //   borderColor: "#e8edf2",
-  //   borderTopWidth: 1,
-  //   height: 75,
-  //   paddingTop: 8,
-  //   backgroundColor:  "#f7fafc",
-  // },
   depth1Frame10: {
     height: 20,
     width: 390,

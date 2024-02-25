@@ -66,7 +66,7 @@ const Navigation = ({navigation}) => {
           </View>
           <View style={[styles.depth4Frame13, styles.depth4FrameSpaceBlock]}>
             <View style={styles.depth5Frame01}>
-              <Text style={[styles.home, styles.homeTypo]}>Stats</Text>
+              <Text style={[styles.home, styles.homeTypo]}>Favoris</Text>
             </View>
           </View>
         </View>

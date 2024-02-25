@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   depth0Frame0: {
+    flex: 1,
     height: "100%",
     overflow: "hidden",
     backgroundColor: "#fff",
